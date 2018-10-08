@@ -1,3 +1,9 @@
+
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,7 +24,13 @@ public class AnlagenverzeichnissGui extends javax.swing.JFrame {
     public AnlagenverzeichnissGui() {
         initComponents();
         fillComboBox();
+        try {
+            model.load(new File("./anlagenverzeichnis.csv"));
+        } catch (IOException ex) {
+            Logger.getLogger(AnlagenverzeichnissGui.class.getName()).log(Level.SEVERE, null, ex);
+        }
         taOutput.setModel(model);
+        
     }
 
     /**
@@ -97,10 +109,11 @@ public class AnlagenverzeichnissGui extends javax.swing.JFrame {
         for (int i = 0; i <= 20; i++) {
             cbYear.addItem(String.valueOf(2000 + i));
         }
+        cbYear.setSelectedIndex(16);
     }
 
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
-
+        model.calc(Integer.parseInt((String) cbYear.getSelectedItem()));
     }//GEN-LAST:event_btUpdateActionPerformed
 
     /**

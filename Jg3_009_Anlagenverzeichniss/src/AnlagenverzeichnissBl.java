@@ -22,18 +22,21 @@ public class AnlagenverzeichnissBl extends AbstractTableModel {
     private String COLNAMES[] = {"Bezeichnung", "AK", "Inbetriebnahme", "ND", "bish. ND", "AfA bisher", "Wert vor AfA", "AfA d.J.", "BW 31.12"};
 
     public void calc(int year) {
-
+        for (Anlage a : anlagen) {
+            a.setActYear(year);
+        }
     }
 
-    public void load (File f) throws FileNotFoundException, IOException{
+    public void load(File f) throws FileNotFoundException, IOException {
         BufferedReader br = new BufferedReader(new FileReader(f));
         String line = br.readLine();
-        while((line = br.readLine()) != null){
+        while ((line = br.readLine()) != null) {
             String splits[] = line.split(";");
-            Anlage a =new Anlage(splits[0],Integer.parseInt(splits[1]),Double.parseDouble(splits[2]),Double.parseDouble(splits[3]));
+            Anlage a = new Anlage(splits[0], Integer.parseInt(splits[1]), Double.parseDouble(splits[2]), Double.parseDouble(splits[3]));
             anlagen.add(a);
         }
     }
+
     @Override
     public int getRowCount() {
         return anlagen.size();
@@ -49,7 +52,6 @@ public class AnlagenverzeichnissBl extends AbstractTableModel {
         return COLNAMES[column]; //To change body of generated methods, choose Tools | Templates.
     }
 
-    
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         return anlagen.get(columnIndex);
