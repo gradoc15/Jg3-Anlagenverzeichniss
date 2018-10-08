@@ -1,5 +1,9 @@
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
@@ -21,8 +25,14 @@ public class AnlagenverzeichnissBl extends AbstractTableModel {
 
     }
 
-    public void load (File f){
-        
+    public void load (File f) throws FileNotFoundException, IOException{
+        BufferedReader br = new BufferedReader(new FileReader(f));
+        String line = br.readLine();
+        while((line = br.readLine()) != null){
+            String splits[] = line.split(";");
+            Anlage a =new Anlage(splits[0],Integer.parseInt(splits[1]),Double.parseDouble(splits[2]),Double.parseDouble(splits[3]));
+            anlagen.add(a);
+        }
     }
     @Override
     public int getRowCount() {
