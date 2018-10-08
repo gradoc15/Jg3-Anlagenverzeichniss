@@ -14,6 +14,8 @@ public class Anlage
     private double iNahme;
     private String bez;
     private double nD;
+    
+    private int actYear;
 
     public Anlage(int aK, double iNahme, String bez, double nD)
     {
@@ -23,26 +25,39 @@ public class Anlage
         this.nD = nD;
     }
     
+    public void setActYear(int year)
+    {
+        actYear = year;
+    }
+    
     public double getBisND()
     {
-        double bND = 0;
+        return actYear-iNahme;
+    }
+    
+    public double getAfaBisher()
+    {
+        return aK/nD*getBisND();
+    }
+    
+    public double getWVorAfa()
+    {
+        return aK - getAfaBisher();
+    }
+    
+    public double getAfa()
+    {
+        double afa = aK / nD;
         
-        double erg = 0;
-        double help = aK/nD/2;
-        double c = 0;
-        
-        while(erg != aK)
-        {
-            c+=0.5;
-            erg = help * c;
-            System.out.println("++++++");
-            System.out.println(erg);
-            System.out.println(aK);
-            
-        }
-        
-        
-        return c;
+        if(aK - getAfaBisher() > afa)
+            return afa;
+        else 
+            return aK - getAfaBisher();
+    }
+    
+    public double bW()
+    {
+        return aK - getAfa() - getAfaBisher();
     }
     
     
