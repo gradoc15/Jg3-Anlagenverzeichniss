@@ -15,7 +15,7 @@ public class Anlage
     private String bez;
     private double nD;
     
-    private static int actYear;
+    private static int actYear=2016;
 
     public Anlage(String bez,int aK, double iNahme,  double nD)
     {

@@ -26,14 +26,14 @@ public class TableRenderer implements TableCellRenderer{
            
            switch(c){
                case 0:l.setText(a.getBez()+"");break;
-               case 1:l.setText(a.getaK()+"");break;
-               case 2:l.setText(a.getiNahme()+"");break;
-               case 3:l.setText(a.getnD()+"");break;
-               case 4:l.setText(a.getBisND()+"");break;
-               case 5:l.setText(a.getAfaBisher()+"");break;
-               case 6:l.setText(a.getWVorAfa()+"");break;
-               case 7:l.setText(a.getAfa()+"");break;
-               case 8:l.setText(a.bW()+"");break;
+               case 1:l.setText(String.format("%.2f",a.getaK()));break;
+               case 2:l.setText(String.format("%.1f",a.getiNahme()));break;
+               case 3:l.setText(String.format("%.2f",a.getnD()));break;
+               case 4:l.setText(String.format("%.2f",a.getBisND()));break;
+               case 5:l.setText(String.format("%.2f",a.getAfaBisher()));break;
+               case 6:l.setText(String.format("%.2f",a.getWVorAfa()));break;
+               case 7:l.setText(String.format("%.2f",a.getAfa()));break;
+               case 8:l.setText(String.format("%.2f",a.bW()));break;
            }
        }
        

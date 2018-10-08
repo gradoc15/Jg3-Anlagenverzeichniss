@@ -115,6 +115,7 @@ public class AnlagenverzeichnissGui extends javax.swing.JFrame {
 
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
         model.calc(Integer.parseInt((String) cbYear.getSelectedItem()));
+        repaint();
     }//GEN-LAST:event_btUpdateActionPerformed
 
     /**
