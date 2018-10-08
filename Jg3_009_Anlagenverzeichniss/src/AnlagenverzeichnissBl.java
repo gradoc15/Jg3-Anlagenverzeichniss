@@ -16,16 +16,14 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author User
  */
-<<<<<<< HEAD
 public class AnlagenverzeichnissBl extends AbstractTableModel {
 
     private ArrayList<Anlage> anlagen = new ArrayList<>();
     private String COLNAMES[] = {"Bezeichnung", "AK", "Inbetriebnahme", "ND", "bish. ND", "AfA bisher", "Wert vor AfA", "AfA d.J.", "BW 31.12"};
 
     public void calc(int year) {
-        for (Anlage a : anlagen) {
-            a.setActYear(year);
-        }
+        Anlage.setActYear(year);
+
     }
 
     public void load(File f) throws FileNotFoundException, IOException {
@@ -33,7 +31,13 @@ public class AnlagenverzeichnissBl extends AbstractTableModel {
         String line = br.readLine();
         while ((line = br.readLine()) != null) {
             String splits[] = line.split(";");
-            Anlage a = new Anlage(splits[0], Integer.parseInt(splits[1]), Double.parseDouble(splits[2]), Double.parseDouble(splits[3]));
+
+            String bez = splits[0];
+            int aK = Integer.parseInt(splits[1].replace(".", ""));
+            double iNahme = Double.parseDouble(splits[2].replace(",", "."));
+            double ND = Double.parseDouble(splits[3].replace(",", "."));
+
+            Anlage a = new Anlage(bez, aK, iNahme, ND);
             anlagen.add(a);
         }
     }
@@ -55,12 +59,7 @@ public class AnlagenverzeichnissBl extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return anlagen.get(columnIndex);
+        return anlagen.get(rowIndex);
     }
 
-=======
-public class AnlagenverzeichnissBl
-{
-   
->>>>>>> AnlageANDModel
 }
