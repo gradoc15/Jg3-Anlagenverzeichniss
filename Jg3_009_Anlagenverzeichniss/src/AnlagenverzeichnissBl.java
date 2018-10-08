@@ -16,6 +16,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author User
  */
+<<<<<<< HEAD
 public class AnlagenverzeichnissBl extends AbstractTableModel {
 
     private ArrayList<Anlage> anlagen = new ArrayList<>();
@@ -57,4 +58,9 @@ public class AnlagenverzeichnissBl extends AbstractTableModel {
         return anlagen.get(columnIndex);
     }
 
+=======
+public class AnlagenverzeichnissBl
+{
+   
+>>>>>>> AnlageANDModel
 }

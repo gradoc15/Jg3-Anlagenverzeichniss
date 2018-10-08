@@ -10,5 +10,82 @@
  */
 public class Anlage
 {
+    private double aK;
+    private double iNahme;
+    private String bez;
+    private double nD;
+    
+    private static int actYear;
+
+    public Anlage(int aK, double iNahme, String bez, double nD)
+    {
+        this.aK = aK;
+        this.iNahme = iNahme;
+        this.bez = bez;
+        this.nD = nD;
+    }
+    
+    public static void setActYear(int year)
+    {
+        actYear = year;
+    }
+    
+    public double getBisND()
+    {
+        return actYear-iNahme;
+    }
+    
+    public double getAfaBisher()
+    {
+        return aK/nD*getBisND();
+    }
+    
+    public double getWVorAfa()
+    {
+        return aK - getAfaBisher();
+    }
+    
+    public double getAfa()
+    {
+        double afa = aK / nD;
+        
+        if(aK - getAfaBisher() > afa)
+            return afa;
+        else 
+            return aK - getAfaBisher();
+    }
+    
+    public double bW()
+    {
+        return aK - getAfa() - getAfaBisher();
+    }
+
+    public double getaK()
+    {
+        return aK;
+    }
+
+    public double getiNahme()
+    {
+        return iNahme;
+    }
+
+    public String getBez()
+    {
+        return bez;
+    }
+
+    public double getnD()
+    {
+        return nD;
+    }
+
+    public int getActYear()
+    {
+        return actYear;
+    }
+    
+   
+    
     
 }
