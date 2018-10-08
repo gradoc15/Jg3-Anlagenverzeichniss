@@ -8,7 +8,11 @@
  *
  * @author User
  */
-public class AnlagenverzeichnissBl
+public class main
 {
-   
+    public static void main(String[] args)
+    {
+        Anlage a = new Anlage(10000, 2002.5, "Name", 20);
+        System.out.println(a.getBisND());
+    }
 }
