@@ -59,6 +59,33 @@ public class Anlage
     {
         return aK - getAfa() - getAfaBisher();
     }
+
+    public double getaK()
+    {
+        return aK;
+    }
+
+    public double getiNahme()
+    {
+        return iNahme;
+    }
+
+    public String getBez()
+    {
+        return bez;
+    }
+
+    public double getnD()
+    {
+        return nD;
+    }
+
+    public int getActYear()
+    {
+        return actYear;
+    }
+    
+   
     
     
 }
