@@ -17,7 +17,7 @@ public class Anlage
     
     private static int actYear;
 
-    public Anlage(int aK, double iNahme, String bez, double nD)
+    public Anlage(String bez,int aK, double iNahme,  double nD)
     {
         this.aK = aK;
         this.iNahme = iNahme;
