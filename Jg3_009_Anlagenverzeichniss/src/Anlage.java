@@ -15,7 +15,7 @@ public class Anlage
     private String bez;
     private double nD;
     
-    private int actYear;
+    private static int actYear;
 
     public Anlage(int aK, double iNahme, String bez, double nD)
     {
@@ -25,7 +25,7 @@ public class Anlage
         this.nD = nD;
     }
     
-    public void setActYear(int year)
+    public static void setActYear(int year)
     {
         actYear = year;
     }
