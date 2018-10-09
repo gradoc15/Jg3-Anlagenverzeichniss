@@ -35,6 +35,10 @@ public class TableRenderer implements TableCellRenderer{
                case 7:l.setText(String.format("%.2f",a.getAfa()));break;
                case 8:l.setText(String.format("%.2f",a.bW()));break;
            }
+           
+           if(!(l.getText() instanceof String)){
+               System.out.println("");
+           }
        }
        
        return l;
