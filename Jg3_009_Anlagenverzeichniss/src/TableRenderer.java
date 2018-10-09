@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -19,7 +20,7 @@ public class TableRenderer implements TableCellRenderer{
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int r, int c) {
        JLabel l = new JLabel("???");
-       
+       l.setOpaque(true);
        if(value instanceof Anlage){
            
            Anlage a = (Anlage) value;
@@ -36,8 +37,13 @@ public class TableRenderer implements TableCellRenderer{
                case 8:l.setText(String.format("%.2f",a.bW()));break;
            }
            
-           if(!(l.getText() instanceof String)){
-               System.out.println("");
+           try{
+               double z1 = Double.parseDouble(l.getText().replace(",", "."));
+               if(z1 == 0){
+                   l.setBackground(Color.red);
+               }
+           }catch(Exception b){
+               
            }
        }
        

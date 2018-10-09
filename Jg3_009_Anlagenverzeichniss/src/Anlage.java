@@ -8,84 +8,78 @@
  *
  * @author User
  */
-public class Anlage
-{
+public class Anlage {
+
     private double aK;
     private double iNahme;
     private String bez;
     private double nD;
-    
-    private static int actYear=2016;
 
-    public Anlage(String bez,int aK, double iNahme,  double nD)
-    {
+    private static int actYear = 2016;
+
+    public Anlage(String bez, int aK, double iNahme, double nD) {
         this.aK = aK;
         this.iNahme = iNahme;
         this.bez = bez;
         this.nD = nD;
     }
-    
-    public static void setActYear(int year)
-    {
+
+    public static void setActYear(int year) {
         actYear = year;
     }
-    
-    public double getBisND()
-    {
-        return actYear-iNahme;
+
+    public double getBisND() {
+        if (actYear - iNahme > 0) {
+            return actYear - iNahme;
+        } else {
+            return 0;
+        }
     }
-    
-    public double getAfaBisher()
-    {
-        return aK/nD*getBisND();
+
+    public double getAfaBisher() {
+        if (aK / nD * getBisND() <= aK) {
+            return aK / nD * getBisND();
+        } else {
+            return aK;
+        }
     }
-    
-    public double getWVorAfa()
-    {
+
+    public double getWVorAfa() {
         return aK - getAfaBisher();
     }
-    
-    public double getAfa()
-    {
+
+    public double getAfa() {
         double afa = aK / nD;
-        
-        if(aK - getAfaBisher() > afa)
+
+        if (aK - getAfaBisher() > afa) {
             return afa;
-        else 
+        } else {
             return aK - getAfaBisher();
+        }
     }
-    
-    public double bW()
-    {
+
+    public double bW() {
         return aK - getAfa() - getAfaBisher();
     }
 
-    public double getaK()
-    {
+    public double getaK() {
         return aK;
     }
 
-    public double getiNahme()
-    {
+    public double getiNahme() {
         return iNahme;
     }
 
-    public String getBez()
-    {
+    public String getBez() {
         return bez;
     }
 
-    public double getnD()
-    {
+    public double getnD() {
         return nD;
     }
 
-    public int getActYear()
-    {
+    public int getActYear() {
         return actYear;
     }
-    
-   
-    
-    
+
 }
