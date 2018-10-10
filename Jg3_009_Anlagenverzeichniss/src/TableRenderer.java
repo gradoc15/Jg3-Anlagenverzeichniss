@@ -29,7 +29,6 @@ public class TableRenderer implements TableCellRenderer {
         if (value instanceof Anlage) {
 
             Anlage a = (Anlage) value;
-
             switch (c) {
                 case 0:
                     l.setText(a.getBez() + "");
@@ -60,11 +59,44 @@ public class TableRenderer implements TableCellRenderer {
                     break;
             }
 
-            
+            if (r == table.getRowCount() - 4) {
+                double sum = a.getSum(c);
+                if (sum == 0) {
+                    l.setText("");
+                } else {
+                    l.setText(String.format("%.2f", sum));
+                    l.setBorder(new MatteBorder(1, 0, 0, 0, Color.BLACK));
+                    Font f = l.getFont();
+                    l.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
+                }
+
+            } else if (r == table.getRowCount() - 3) {
+                l.setText("");
+            } else if (r == table.getRowCount() - 2) {
+                l.setText("");
+                if (c == 6) {
+                    l.setText("BW 1.1");
+                    Font f = l.getFont();
+                    l.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
+                } else if (c == 7) {
+                    l.setText(String.format("%.2f", a.getSum(7)+a.getSum(6)));
+                }
+
+            } else if (r == table.getRowCount() - 1) {
+                l.setText("");
+                if (c == 6) {
+                    l.setText("Zugänge "+a.getActYear());
+                    Font f = l.getFont();
+                    l.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
+                } else if (c == 7) {
+                    l.setText(String.format("%.2f", a.getZugang()));
+                    
+                }
+            }
 
             try {
                 double z1 = Double.parseDouble(l.getText().replace(",", "."));
-                System.out.println(z1);
+
                 if (z1 == 0) {
                     l.setBackground(Color.red);
                 }
