@@ -29,6 +29,7 @@ public class AnlagenverzeichnissGui extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(AnlagenverzeichnissGui.class.getName()).log(Level.SEVERE, null, ex);
         }
+        model.calc(2016);
         taOutput.setDefaultRenderer(Object.class, new TableRenderer());
         taOutput.setModel(model);
         

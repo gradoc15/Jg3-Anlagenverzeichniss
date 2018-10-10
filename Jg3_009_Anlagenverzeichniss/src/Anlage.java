@@ -31,6 +31,13 @@ public class Anlage {
         this.bez = bez;
         this.nD = nD;
 
+    }
+
+    public static void setActYear(int year) {
+        actYear = year;
+    }
+
+    public void updateValues() {
         akSUM += getaK();
         afABSUM += getAfaBisher();
         wVAfaSUM += getWVorAfa();
@@ -38,11 +45,14 @@ public class Anlage {
         bwSUM += getBW();
         zugang += (int) iNahme == actYear ? aK : 0;
     }
-
-    public static void setActYear(int year) {
-        actYear = year;
+    public void setZero(){
+        akSUM = 0;
+        afABSUM = 0;
+        wVAfaSUM = 0;
+        afADJSUM = 0;
+        bwSUM = 0;
+        zugang = 0;
     }
-
     Anlage() {
 
     }
@@ -126,7 +136,7 @@ public class Anlage {
     }
 
     public double getZugang() {
-       
+
         return zugang;
     }
 }

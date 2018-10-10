@@ -23,7 +23,13 @@ public class AnlagenverzeichnissBl extends AbstractTableModel {
 
     public void calc(int year) {
         Anlage.setActYear(year);
-
+        for (Anlage a : anlagen) {
+             a.setZero();
+        }
+        for (Anlage a : anlagen) {
+           
+            a.updateValues();
+        }
     }
 
     public void load(File f) throws FileNotFoundException, IOException {
