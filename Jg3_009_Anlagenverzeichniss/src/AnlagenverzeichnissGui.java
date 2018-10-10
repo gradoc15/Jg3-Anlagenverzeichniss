@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -30,6 +31,7 @@ public class AnlagenverzeichnissGui extends javax.swing.JFrame {
             Logger.getLogger(AnlagenverzeichnissGui.class.getName()).log(Level.SEVERE, null, ex);
         }
         taOutput.setDefaultRenderer(Object.class, new TableRenderer());
+        taOutput.getTableHeader().setReorderingAllowed(false);
         taOutput.setModel(model);
         
     }
@@ -50,6 +52,7 @@ public class AnlagenverzeichnissGui extends javax.swing.JFrame {
         cbYear = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         btAdd = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,6 +91,15 @@ public class AnlagenverzeichnissGui extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Save");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,6 +116,8 @@ public class AnlagenverzeichnissGui extends javax.swing.JFrame {
                         .addComponent(btUpdate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -115,7 +129,8 @@ public class AnlagenverzeichnissGui extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btUpdate)
                         .addComponent(cbYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btAdd))
+                        .addComponent(btAdd)
+                        .addComponent(jButton1))
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -147,6 +162,17 @@ public class AnlagenverzeichnissGui extends javax.swing.JFrame {
             model.add(dlg.getAnlage());
         }
     }//GEN-LAST:event_btAddActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        try
+        {
+            model.save(new File("./anlagenverzeichnis.csv"));
+        } catch (IOException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,6 +213,7 @@ public class AnlagenverzeichnissGui extends javax.swing.JFrame {
     private javax.swing.JButton btAdd;
     private javax.swing.JButton btUpdate;
     private javax.swing.JComboBox<String> cbYear;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable taOutput;
