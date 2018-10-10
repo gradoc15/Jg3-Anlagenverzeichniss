@@ -29,7 +29,9 @@ public class Anlage {
     }
 
     public double getBisND() {
-        if (actYear - iNahme > 0) {
+        if (nD <= (actYear - iNahme)) {
+            return nD;
+        } else if (actYear - iNahme > 0) {
             return actYear - iNahme;
         } else {
             return 0;
