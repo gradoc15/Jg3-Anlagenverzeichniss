@@ -17,15 +17,32 @@ public class Anlage {
 
     private static int actYear = 2016;
 
+    private static double akSUM = 0;
+    private static double afABSUM = 0;
+    private static double wVAfaSUM = 0;
+    private static double afADJSUM = 0;
+    private static double bwSUM = 0;
+    
     public Anlage(String bez, int aK, double iNahme, double nD) {
         this.aK = aK;
         this.iNahme = iNahme;
         this.bez = bez;
         this.nD = nD;
+        
+        akSUM+=getaK();
+        afABSUM+=getAfaBisher();
+        wVAfaSUM+=getWVorAfa();
+        afADJSUM+=getAfa();
+        bwSUM+=getBW();
     }
+    
 
     public static void setActYear(int year) {
         actYear = year;
+    }
+
+    Anlage() {
+        
     }
 
     public double getBisND() {
@@ -60,7 +77,7 @@ public class Anlage {
         }
     }
 
-    public double bW() {
+    public double getBW() {
         return aK - getAfa() - getAfaBisher();
     }
 
@@ -84,4 +101,15 @@ public class Anlage {
         return actYear;
     }
 
+    public double getSum(int r){
+        double d = 0;
+        switch(r){
+            case 1:d= akSUM;break;
+            case 5:d= afABSUM;break;
+            case 6:d= wVAfaSUM;break;
+            case 7:d= afADJSUM;break;
+            case 8:d= bwSUM;break;
+        }
+        return d;
+    }
 }

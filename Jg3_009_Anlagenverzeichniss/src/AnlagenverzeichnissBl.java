@@ -40,6 +40,9 @@ public class AnlagenverzeichnissBl extends AbstractTableModel {
             Anlage a = new Anlage(bez, aK, iNahme, ND);
             anlagen.add(a);
         }
+        for (int i = 0; i < 8; i++) {
+            anlagen.add(new Anlage());
+        }
     }
 
     @Override
