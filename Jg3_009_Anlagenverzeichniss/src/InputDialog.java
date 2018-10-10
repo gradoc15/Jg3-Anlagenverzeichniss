@@ -109,18 +109,19 @@ public class InputDialog extends javax.swing.JDialog
                 throw  new Exception("Bitte gib eine positive ND ein");
             if(Integer.parseInt(tfAK.getText()) < 0)
                 throw  new Exception("Bitte gib eine positive AK ein");
-            if(!(Double.parseDouble(tfINahme.getText())%1 == 0 || Double.parseDouble(tfINahme.getText())%1 == 5))
+            if(!(Double.parseDouble(tfINahme.getText())%1 == 0 || Double.parseDouble(tfINahme.getText())%1 == 0.5))
                 throw  new Exception("Bitte gib eine Jahreszahl ein, für halbjahre ist ein .5 anzuhengen");
                 
             an = new Anlage(tfBez.getText(), Integer.parseInt(tfAK.getText()), Double.parseDouble(tfINahme.getText()), Double.parseDouble(tfND.getText()));
             okay = true;
+            this.dispose();
         }
         catch(Exception ex)
         {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         
-        this.dispose();
+        
     }//GEN-LAST:event_btAddActionPerformed
 
     private void btCancleActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btCancleActionPerformed

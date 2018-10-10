@@ -139,7 +139,8 @@ public class AnlagenverzeichnissGui extends javax.swing.JFrame {
     private void btAddActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btAddActionPerformed
     {//GEN-HEADEREND:event_btAddActionPerformed
         InputDialog dlg = new InputDialog(this, true);
-        
+     
+        System.out.println("a");
         dlg.setVisible(true);
         if(dlg.isOkay())
         {
