@@ -24,7 +24,7 @@ public class AnlagenverzeichnissBl extends AbstractTableModel {
 
     private ArrayList<Anlage> anlagen = new ArrayList<>();
     private String COLNAMES[] = {"Bezeichnung", "AK", "Inbetriebnahme", "ND", "bish. ND", "AfA bisher", "Wert vor AfA", "AfA d.J.", "BW 31.12"};
-
+    private ArrayList<String> summe = new ArrayList<>();
     public void calc(int year) {
         Anlage.setActYear(year);
         for (Anlage a : anlagen) {
@@ -81,14 +81,11 @@ public class AnlagenverzeichnissBl extends AbstractTableModel {
             Anlage a = new Anlage(bez, aK, iNahme, ND);
             anlagen.add(a);
         }
-        for (int i = 0; i < 4; i++) {
-            anlagen.add(new Anlage());
-        }
     }
 
     @Override
     public int getRowCount() {
-        return anlagen.size();
+        return anlagen.size() + summe.size();
     }
 
     @Override
