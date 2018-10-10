@@ -25,6 +25,12 @@ public class AnlagenverzeichnissBl extends AbstractTableModel {
         Anlage.setActYear(year);
 
     }
+    
+    public void add(Anlage a)
+    {
+        anlagen.add(a);
+        fireTableRowsInserted(anlagen.size()-1, anlagen.size()-1);
+    }
 
     public void load(File f) throws FileNotFoundException, IOException {
         BufferedReader br = new BufferedReader(new FileReader(f));

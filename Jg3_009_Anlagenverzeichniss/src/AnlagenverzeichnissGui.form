@@ -33,6 +33,8 @@
                       <Component id="cbYear" min="-2" pref="80" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btUpdate" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btAdd" min="-2" pref="124" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -48,6 +50,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cbYear" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btAdd" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel1" alignment="1" min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
@@ -101,6 +104,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Year:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btAdd">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="n. A. hinzuf&#xfc;gen"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAddActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

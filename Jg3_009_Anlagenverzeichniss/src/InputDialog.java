@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -30,21 +33,100 @@ public class InputDialog extends javax.swing.JDialog
     private void initComponents()
     {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        lbBez = new javax.swing.JLabel();
+        tfBez = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        tfAK = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        tfINahme = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        tfND = new javax.swing.JTextField();
+        btAdd = new javax.swing.JButton();
+        btCancle = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridLayout(5, 2));
+
+        lbBez.setText("Bezeichnung: ");
+        getContentPane().add(lbBez);
+        getContentPane().add(tfBez);
+
+        jLabel2.setText("AK: ");
+        jLabel2.setToolTipText("");
+        getContentPane().add(jLabel2);
+        getContentPane().add(tfAK);
+
+        jLabel3.setText("Inbetriebnahme (Jahreszahl): ");
+        getContentPane().add(jLabel3);
+        getContentPane().add(tfINahme);
+
+        jLabel4.setText("Nutzungsdauer: ");
+        getContentPane().add(jLabel4);
+        getContentPane().add(tfND);
+
+        btAdd.setText("Add");
+        btAdd.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btAddActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btAdd);
+
+        btCancle.setText("Cancle");
+        btCancle.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btCancleActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btCancle);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private boolean okay = false;
+    Anlage an = null;
+    
+    public boolean isOkay()
+    {
+        return okay;
+    }
+    
+    public Anlage getAnlage()
+    {
+        return an;
+    }
+    
+    private void btAddActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btAddActionPerformed
+    {//GEN-HEADEREND:event_btAddActionPerformed
+        
+        
+        try{
+            if(Double.parseDouble(tfND.getText()) < 0)
+                throw  new Exception("Bitte gib eine positive ND ein");
+            if(Integer.parseInt(tfAK.getText()) < 0)
+                throw  new Exception("Bitte gib eine positive AK ein");
+            if(!(Double.parseDouble(tfINahme.getText())%1 == 0 || Double.parseDouble(tfINahme.getText())%1 == 5))
+                throw  new Exception("Bitte gib eine Jahreszahl ein, für halbjahre ist ein .5 anzuhengen");
+                
+            an = new Anlage(tfBez.getText(), Integer.parseInt(tfAK.getText()), Double.parseDouble(tfINahme.getText()), Double.parseDouble(tfND.getText()));
+            okay = true;
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
+        this.dispose();
+    }//GEN-LAST:event_btAddActionPerformed
+
+    private void btCancleActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btCancleActionPerformed
+    {//GEN-HEADEREND:event_btCancleActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btCancleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -101,5 +183,15 @@ public class InputDialog extends javax.swing.JDialog
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAdd;
+    private javax.swing.JButton btCancle;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lbBez;
+    private javax.swing.JTextField tfAK;
+    private javax.swing.JTextField tfBez;
+    private javax.swing.JTextField tfINahme;
+    private javax.swing.JTextField tfND;
     // End of variables declaration//GEN-END:variables
 }
