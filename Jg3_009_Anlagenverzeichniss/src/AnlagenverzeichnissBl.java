@@ -25,25 +25,25 @@ public class AnlagenverzeichnissBl extends AbstractTableModel {
     private ArrayList<Anlage> anlagen = new ArrayList<>();
     private String COLNAMES[] = {"Bezeichnung", "AK", "Inbetriebnahme", "ND", "bish. ND", "AfA bisher", "Wert vor AfA", "AfA d.J.", "BW 31.12"};
 
+
     public void calc(int year) {
         Anlage.setActYear(year);
         for (Anlage a : anlagen) {
-             a.setZero();
+            a.setZero();
         }
         for (Anlage a : anlagen) {
-           
+
             a.updateValues();
         }
     }
-    
-    public void add(Anlage a)
-    {
+
+    public void add(Anlage a) {
         anlagen.add(a);
-        fireTableRowsInserted(anlagen.size()-1, anlagen.size()-1);
+        a.updateValues();
+        fireTableRowsInserted(anlagen.size() - 1, anlagen.size() - 1);
     }
-    
-    public void save(File f) throws FileNotFoundException, IOException
-    {
+
+    public void save(File f) throws FileNotFoundException, IOException {
         /*
            while ((line = br.readLine()) != null) {
             String splits[] = line.split(";");
@@ -54,16 +54,16 @@ public class AnlagenverzeichnissBl extends AbstractTableModel {
             double ND = Double.parseDouble(splits[3].replace(",", "."));
 
             Anlage a = new Anlage(bez, aK, iNahme, ND);
-        */
+         */
         BufferedWriter br = new BufferedWriter(new FileWriter(f));
 
         String line = "";
         for (Anlage a : anlagen) {
-            line = String.format("%s;%.0f;%f;%f",a.getBez(), a.getaK(), a.getiNahme(), a.getnD());
+            line = String.format("%s;%.0f;%f;%f", a.getBez(), a.getaK(), a.getiNahme(), a.getnD());
             br.write(line);
             br.newLine();
         }
-        
+
         br.close();
     }
 
@@ -71,24 +71,22 @@ public class AnlagenverzeichnissBl extends AbstractTableModel {
         BufferedReader br = new BufferedReader(new FileReader(f));
         String line = br.readLine();
         while ((line = br.readLine()) != null) {
+
             String splits[] = line.split(";");
 
             String bez = splits[0];
             int aK = Integer.parseInt(splits[1].replace(".", ""));
             double iNahme = Double.parseDouble(splits[2].replace(",", "."));
             double ND = Double.parseDouble(splits[3].replace(",", "."));
-
+            System.out.println(bez);
             Anlage a = new Anlage(bez, aK, iNahme, ND);
             anlagen.add(a);
-        }
-        for (int i = 0; i < 4; i++) {
-            anlagen.add(new Anlage());
         }
     }
 
     @Override
     public int getRowCount() {
-        return anlagen.size();
+        return anlagen.size() + 4;
     }
 
     @Override
@@ -103,7 +101,11 @@ public class AnlagenverzeichnissBl extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return anlagen.get(rowIndex);
+        try {
+            return anlagen.get(rowIndex);
+        } catch (Exception e) {
+            return new Anlage();
+        }
     }
 
 }
